@@ -2,7 +2,9 @@ debian/*.debhelper.log
 debian/*.debhelper
 debian/*.install
 debian/*.substvars
-debian/*/
+debian/tmp/
+debian/libaio-ocaml/
+debian/libaio-ocaml-dev/
 debian/files
 *.o
 *.a
