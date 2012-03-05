@@ -31,7 +31,7 @@ Architecture: any
 Depends: ${ocaml:Depends}, ${misc:Depends}, libaio-dev (>= 0.3),
 	 libaio-ocaml (= ${binary:Version}), ocaml-findlib (>= 1.1)
 Provides: ${ocaml:Provides}
-Description: OCaml bindings for libaio (Linux kernel AIO access library)
+Description: OCaml bindings for libaio (Linux kernel AIO access library) (devel)
  This OCaml-library interfaces the libaio (Linux kernel AIO access
  library) C library. It can be used for fast asynchronous I/O.
  .
