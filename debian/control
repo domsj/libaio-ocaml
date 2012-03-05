@@ -1,0 +1,45 @@
+Source: libaio-ocaml
+Section: ocaml
+Priority: optional
+Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
+Uploaders: Goswin von Brederlow <goswin-v-b@web.de>
+DM-Upload-Allowed: yes
+Build-Depends: debhelper (>= 7.0.0), libaio-dev, ocaml-nox (>= 3.10.0), ocaml-findlib (>= 1.2.1-5), dh-ocaml
+Standards-Version: 3.9.3
+Vcs-Git: git://anonscm.debian.org/pkg-ocaml-maint/packages/libaio-ocaml.git
+Vcs-Browser: http://anonscm.debian.org/git/pkg-ocaml-maint/packages/libaio-ocaml.git
+Homepage: http://forge.ocamlcore.org/projects/libaio-ocaml/
+
+Package: libaio-ocaml
+Architecture: any
+Depends: ${ocaml:Depends}, ${shlibs:Depends}, ${misc:Depends}
+Provides: ${ocaml:Provides}
+Description: OCaml bindings for libaio (Linux kernel AIO access library)
+ This OCaml-library interfaces the libaio (Linux kernel AIO access
+ library) C library. It can be used for fast asynchronous I/O.
+ .
+ Compared with the OCaml standard and Unix I/O functions this
+ library:
+  * does not block
+  * does I/O in the background
+  * calls a continuation when the I/O has completed
+ .
+ This package contains only the shared runtime stub libraries.
+
+Package: libaio-ocaml-dev
+Architecture: any
+Depends: ${ocaml:Depends}, ${misc:Depends}, libaio-dev (>= 0.3),
+	 libaio-ocaml (= ${binary:Version}), ocaml-findlib (>= 1.1)
+Provides: ${ocaml:Provides}
+Description: OCaml bindings for libaio (Linux kernel AIO access library)
+ This OCaml-library interfaces the libaio (Linux kernel AIO access
+ library) C library. It can be used for fast asynchronous I/O.
+ .
+ Compared with the OCaml standard and Unix I/O functions this
+ library:
+  * does not block
+  * does I/O in the background
+  * calls a continuation when the I/O has completed
+ .
+ This package contains all the development stuff you need to use
+ OCaml aio in your programs.

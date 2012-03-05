@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+
+DESTDIR := $(CURDIR)/debian/tmp
+
+include /usr/share/ocaml/ocamlvars.mk
+
+export OCAMLFIND_DESTDIR := $(DESTDIR)/$(OCAML_STDLIB_DIR)
+export OCAMLFIND_DLLDIR := $(DESTDIR)/$(OCAML_DLL_DIR)
+
+ifeq ($(OCAML_HAVE_OCAMLOPT),yes)
+  BUILD_TARGET := byte-code-library native-code-library
+  INSTALL_TARGET := libinstall
+else
+  BUILD_TARGET := byte-code-library
+  INSTALL_TARGET := libinstall-byte-code
+endif
+
+%:
+	dh $@ --with ocaml
+
+.PHONY: override_dh_auto_build
+override_dh_auto_build:
+	$(MAKE) $(BUILD_TARGET)
+
+.PHONY: override_dh_auto_install
+override_dh_auto_install:
+	mkdir -p $(OCAMLFIND_DESTDIR) $(OCAMLFIND_DLLDIR)
+	$(MAKE) $(INSTALL_TARGET)
+	rm $(OCAMLFIND_DLLDIR)/*.owner
+
+.PHONY: override_dh_install
+override_dh_install:
+	dh_install --fail-missing
