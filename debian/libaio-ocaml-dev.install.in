@@ -1,4 +1,4 @@
-@OCamlStdlibDir@/aio/META	@OCamlStdlibDir@/aio/
-@OCamlStdlibDir@/aio/*.a		@OCamlStdlibDir@/aio/
-@OCamlStdlibDir@/aio/*.cm*	@OCamlStdlibDir@/aio/
-@OCamlStdlibDir@/aio/*.ml*	@OCamlStdlibDir@/aio/
+@OCamlStdlibDir@/aio/META
+@OCamlStdlibDir@/aio/*.a
+@OCamlStdlibDir@/aio/*.cm*
+@OCamlStdlibDir@/aio/*.ml*

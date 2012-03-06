@@ -3,8 +3,7 @@ Section: ocaml
 Priority: optional
 Maintainer: Debian OCaml Maintainers <debian-ocaml-maint@lists.debian.org>
 Uploaders: Goswin von Brederlow <goswin-v-b@web.de>
-DM-Upload-Allowed: yes
-Build-Depends: debhelper (>= 7.0.50~), libaio-dev, ocaml-nox (>= 3.10.0), ocaml-findlib (>= 1.2.1-5), dh-ocaml
+Build-Depends: debhelper (>= 8~), libaio-dev, ocaml-nox (>= 3.11.1-3~), ocaml-findlib (>= 1.2.1-5), dh-ocaml (>= 0.9)
 Standards-Version: 3.9.3
 Vcs-Git: git://anonscm.debian.org/pkg-ocaml-maint/packages/libaio-ocaml.git
 Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-ocaml-maint/packages/libaio-ocaml.git
@@ -28,8 +27,7 @@ Description: OCaml bindings for libaio (Linux kernel AIO access library)
 
 Package: libaio-ocaml-dev
 Architecture: any
-Depends: ${ocaml:Depends}, ${misc:Depends}, libaio-dev (>= 0.3),
-	 libaio-ocaml (= ${binary:Version}), ocaml-findlib (>= 1.1)
+Depends: ${ocaml:Depends}, ${misc:Depends}, libaio-dev (>= 0.3), ocaml-findlib (>= 1.1)
 Provides: ${ocaml:Provides}
 Description: OCaml bindings for libaio (Linux kernel AIO access library) (devel)
  This OCaml-library interfaces the libaio (Linux kernel AIO access

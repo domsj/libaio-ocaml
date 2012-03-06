@@ -1,5 +1,5 @@
-libaio-ocaml (1.0~rc2) experimental; urgency=low
+libaio-ocaml (1.0~rc3) experimental; urgency=low
 
-  * Initial Release (Closes: #662632)
+  * Initial Release.
 
- -- Goswin von Brederlow <goswin-v-b@web.de>  Mon, 05 Mar 2012 14:31:20 +0100
+ -- Goswin von Brederlow <goswin-v-b@web.de>  Tue, 06 Mar 2012 02:02:36 +0100
