@@ -7,7 +7,7 @@ DM-Upload-Allowed: yes
 Build-Depends: debhelper (>= 7.0.50~), libaio-dev, ocaml-nox (>= 3.10.0), ocaml-findlib (>= 1.2.1-5), dh-ocaml
 Standards-Version: 3.9.3
 Vcs-Git: git://anonscm.debian.org/pkg-ocaml-maint/packages/libaio-ocaml.git
-Vcs-Browser: http://anonscm.debian.org/git/pkg-ocaml-maint/packages/libaio-ocaml.git
+Vcs-Browser: http://anonscm.debian.org/gitweb/?p=pkg-ocaml-maint/packages/libaio-ocaml.git
 Homepage: http://forge.ocamlcore.org/projects/libaio-ocaml/
 
 Package: libaio-ocaml
