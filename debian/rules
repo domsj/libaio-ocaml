@@ -67,5 +67,9 @@ release:
 			  --upstream-version=$(UPSTREAM_VERSION)	\
 			  $(ORIG_NAME);					\
 	fi
+	@echo "Merging into upstream"
+	@git checkout upstream
+	@git merge -s ours master
+	@git checkout master
 	@echo "Tagging release debian/$(VERSION)"
 	@git tag "debian/$(VERSION)"
