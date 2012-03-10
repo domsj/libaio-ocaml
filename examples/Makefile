@@ -22,4 +22,6 @@ clean:
 	rm -f *.cmx *.cmi *.cmo *.o
 	rm -f test.out testfile test.opt test.byte
 
+distclean: clean
+
 .NOTPARALLEL:

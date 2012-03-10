@@ -8,5 +8,9 @@ clean:
 	$(MAKE) -C lib $@
 	$(MAKE) -C examples $@
 
+distclean:
+	$(MAKE) -C lib $@
+	$(MAKE) -C examples $@
+
 test:
 	$(MAKE) -C examples $@
