@@ -48,15 +48,15 @@ release:
 	  echo "Error: Uncommited changed.";				\
 	  exit 1;							\
 	fi
-	@if [ ! "$(shell git branch)" = "* master" ]; then		\
+	@if ! git branch | grep -q "^* master$$"; then			\
 	  echo "Error: Not in master branch.";				\
 	  exit 1;							\
 	fi
-	@if git tag | grep "^debian/$(VERSION)$$"; then			\
+	@if git tag | grep -q "^debian/$(VERSION)$$"; then		\
 	  echo "Error: Release $(VERSION) already exists.";		\
 	  exit 1;							\
 	fi
-	@if git tag | grep "^upsteam/$(UPSTREAM_VERSION)$$"; then	\
+	@if git tag | grep -q "^upsteam/$(UPSTREAM_VERSION)$$"; then	\
 	  echo "Upstream $(UPSTREAM_VERSION) already exists.";		\
 	else								\
 	  echo "Creating $(ORIG_NAME) ...";				\
