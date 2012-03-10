@@ -63,7 +63,9 @@ release:
 	  git archive --format=tar.gz --output=$(ORIG_NAME)		\
 		      --prefix=$(SOURCE)-$(UPSTREAM_VERSION)/		\
 		      --worktree-attributes HEAD;			\
-	  git-import-orig --no-merge --pristine-tar $(ORIG_NAME);	\
+	  git-import-orig --no-merge --pristine-tar 			\
+			  --upstream-version=$(UPSTREAM_VERSION)	\
+			  $(ORIG_NAME);					\
 	fi
 	@echo "Tagging release debian/$(VERSION)"
 	@git tag "debian/$(VERSION)"
