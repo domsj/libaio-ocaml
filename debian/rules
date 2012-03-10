@@ -32,3 +32,38 @@ override_dh_auto_install:
 .PHONY: override_dh_install
 override_dh_install:
 	dh_install --fail-missing
+
+# Make a release
+release: SOURCE=$(shell dpkg-parsechangelog | awk '/^Source:/ { print $$2 }')
+release: VERSION=$(shell dpkg-parsechangelog | awk '/^Version:/ { print $$2 }')
+release: UPSTREAM_VERSION=$(shell VERSION="$(VERSION)"; echo $${VERSION%-*})
+release: DIR=$(shell basename "$$(pwd)")
+release: ORIG_NAME=../$(SOURCE)_$(UPSTREAM_VERSION).orig.tar.gz
+release:
+	@if [ "$(VERSION)" = $(UPSTREAM_VERSION) ]; then		\
+	  echo "Error: Missing debian revision in $(VERSION).";		\
+	  exit 1;							\
+	fi
+	@if [ -n "$(shell git status --porcelain)" ]; then		\
+	  echo "Error: Uncommited changed.";				\
+	  exit 1;							\
+	fi
+	@if [ ! "$(shell git branch)" = "* master" ]; then		\
+	  echo "Error: Not in master branch.";				\
+	  exit 1;							\
+	fi
+	@if git tag | grep "^debian/$(VERSION)$$"; then			\
+	  echo "Error: Release $(VERSION) already exists.";		\
+	  exit 1;							\
+	fi
+	@if git tag | grep "^upsteam/$(UPSTREAM_VERSION)$$"; then	\
+	  echo "Upstream $(UPSTREAM_VERSION) already exists.";		\
+	else								\
+	  echo "Creating $(ORIG_NAME) ...";				\
+	  git archive --format=tar.gz --output=$(ORIG_NAME)		\
+		      --prefix=$(SOURCE)-$(UPSTREAM_VERSION)/		\
+		      --worktree-attributes HEAD;			\
+	  git-import-orig --no-merge --pristine-tar $(ORIG_NAME);	\
+	fi
+	@echo "Tagging release debian/$(VERSION)"
+	@git tag "debian/$(VERSION)"
