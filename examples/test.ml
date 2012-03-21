@@ -1,12 +1,12 @@
 let read_done result =
   let buffer = Aio.result result in
-  let i64 = Aio.Buffer.get_int64 buffer 0 in
-  let i32 = Aio.Buffer.get_int32 buffer 8 in
-  let i31 = Aio.Buffer.get_int31 buffer 12 in
-  let i16 = Aio.Buffer.get_int16 buffer 16 in
-  let u16 = Aio.Buffer.get_uint16 buffer 18 in
-  let i8 = Aio.Buffer.get_int8 buffer 20 in
-  let u8 = Aio.Buffer.get_uint8 buffer 21
+  let i64 = Aio.Buffer.get_net_int64 buffer 0 in
+  let i32 = Aio.Buffer.get_net_int32 buffer 8 in
+  let i31 = Aio.Buffer.get_net_int31 buffer 12 in
+  let i16 = Aio.Buffer.get_net_int16 buffer 16 in
+  let u16 = Aio.Buffer.get_net_uint16 buffer 18 in
+  let i8 = Aio.Buffer.get_net_int8 buffer 20 in
+  let u8 = Aio.Buffer.get_net_uint8 buffer 21
   in
     Printf.printf " int64 = %Lx\n" i64;
     Printf.printf " int32 = %lx\n" i32;
@@ -35,13 +35,13 @@ let _ =
   let ctx = Aio.context 32
   in
     Aio.Buffer.clear buffer;
-    Aio.Buffer.set_int64 buffer 0 0x123456789abcdefL;
-    Aio.Buffer.set_int32 buffer 8 0x12345678l;
-    Aio.Buffer.set_int31 buffer 12 0x12345678;
-    Aio.Buffer.set_int16 buffer 16 (-12345);
-    Aio.Buffer.set_uint16 buffer 18 12345;
-    Aio.Buffer.set_int8 buffer 20 (-23);
-    Aio.Buffer.set_uint8 buffer 21 42;
+    Aio.Buffer.set_net_int64 buffer 0 0x123456789abcdefL;
+    Aio.Buffer.set_net_int32 buffer 8 0x12345678l;
+    Aio.Buffer.set_net_int31 buffer 12 0x12345678;
+    Aio.Buffer.set_net_int16 buffer 16 (-12345);
+    Aio.Buffer.set_net_uint16 buffer 18 12345;
+    Aio.Buffer.set_net_int8 buffer 20 (-23);
+    Aio.Buffer.set_net_uint8 buffer 21 42;
 
     Printf.printf "writing\n";
     flush_all ();
