@@ -56,7 +56,8 @@ release:
 	  echo "Error: Release $(VERSION) already exists.";		\
 	  exit 1;							\
 	fi
-	@if git tag | grep -q "^upsteam/$(UPSTREAM_VERSION)$$"; then	\
+	@set -e;							\
+	if git tag | grep -q "^upsteam/$(UPSTREAM_VERSION)$$"; then	\
 	  echo "Upstream $(UPSTREAM_VERSION) already exists.";		\
 	else								\
 	  echo "Creating $(ORIG_NAME) ...";				\
@@ -66,10 +67,10 @@ release:
 	  git-import-orig --no-merge --pristine-tar 			\
 			  --upstream-version=$(UPSTREAM_VERSION)	\
 			  $(ORIG_NAME);					\
+	  echo "Merging into upstream";					\
+	  git checkout upstream;					\
+	  git merge -s ours master;					\
+	  git checkout master;						\
 	fi
-	@echo "Merging into upstream"
-	@git checkout upstream
-	@git merge -s ours master
-	@git checkout master
 	@echo "Tagging release debian/$(VERSION)"
 	@git tag "debian/$(VERSION)"
