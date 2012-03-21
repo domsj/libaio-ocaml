@@ -175,7 +175,7 @@ value caml_aio_buf_unsafe_set_substr_stub(value ml_buf, value ml_off, value ml_s
 value caml_aio_buffer_get_be_int16(value ml_buf, value ml_off) {
     int16_t *buf = (int16_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    return Val_int(be16toh(buf[off / 2]));
+    return Val_int((int16_t)be16toh(buf[off / 2]));
 }
 
 value caml_aio_buffer_set_be_int16(value ml_buf, value ml_off, value ml_x) {
@@ -203,7 +203,7 @@ value caml_aio_buffer_set_be_uint16(value ml_buf, value ml_off, value ml_x) {
 value caml_aio_buffer_get_be_int31(value ml_buf, value ml_off) {
     int32_t *buf = (int32_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    return Val_int(be32toh(buf[off / 4]));
+    return Val_int((int32_t)be32toh(buf[off / 4]));
 }
 
 value caml_aio_buffer_set_be_int31(value ml_buf, value ml_off, value ml_x) {
@@ -219,7 +219,7 @@ CAMLprim value caml_aio_buffer_get_be_int32(value ml_buf, value ml_off) {
     CAMLlocal1(ml_res);
     int32_t *buf = (int32_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    CAMLreturn(caml_copy_int32(be32toh(buf[off / 4])));
+    CAMLreturn(caml_copy_int32((int32_t)be32toh(buf[off / 4])));
 }
 
 value caml_aio_buffer_set_be_int32(value ml_buf, value ml_off, value ml_x) {
@@ -235,7 +235,7 @@ CAMLprim value caml_aio_buffer_get_be_int64(value ml_buf, value ml_off) {
     CAMLlocal1(ml_res);
     int64_t *buf = (int64_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    CAMLreturn(caml_copy_int64(be64toh(buf[off / 8])));
+    CAMLreturn(caml_copy_int64((int64_t)be64toh(buf[off / 8])));
 }
 #include <stdio.h>
 value caml_aio_buffer_set_be_int64(value ml_buf, value ml_off, value ml_x) {
@@ -251,7 +251,7 @@ value caml_aio_buffer_set_be_int64(value ml_buf, value ml_off, value ml_x) {
 value caml_aio_buffer_get_le_int16(value ml_buf, value ml_off) {
     int16_t *buf = (int16_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    return Val_int(le16toh(buf[off / 2]));
+    return Val_int((int16_t)le16toh(buf[off / 2]));
 }
 
 value caml_aio_buffer_set_le_int16(value ml_buf, value ml_off, value ml_x) {
@@ -279,7 +279,7 @@ value caml_aio_buffer_set_le_uint16(value ml_buf, value ml_off, value ml_x) {
 value caml_aio_buffer_get_le_int31(value ml_buf, value ml_off) {
     int32_t *buf = (int32_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    return Val_int(le32toh(buf[off / 4]));
+    return Val_int((int32_t)le32toh(buf[off / 4]));
 }
 
 value caml_aio_buffer_set_le_int31(value ml_buf, value ml_off, value ml_x) {
@@ -295,7 +295,7 @@ CAMLprim value caml_aio_buffer_get_le_int32(value ml_buf, value ml_off) {
     CAMLlocal1(ml_res);
     int32_t *buf = (int32_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    CAMLreturn(caml_copy_int32(le32toh(buf[off / 4])));
+    CAMLreturn(caml_copy_int32((int32_t)le32toh(buf[off / 4])));
 }
 
 value caml_aio_buffer_set_le_int32(value ml_buf, value ml_off, value ml_x) {
@@ -311,7 +311,7 @@ CAMLprim value caml_aio_buffer_get_le_int64(value ml_buf, value ml_off) {
     CAMLlocal1(ml_res);
     int64_t *buf = (int64_t*)Data_bigarray_val(ml_buf);
     size_t off = Int_val(ml_off);
-    CAMLreturn(caml_copy_int64(le64toh(buf[off / 8])));
+    CAMLreturn(caml_copy_int64((int64_t)le64toh(buf[off / 8])));
 }
 #include <stdio.h>
 value caml_aio_buffer_set_le_int64(value ml_buf, value ml_off, value ml_x) {
