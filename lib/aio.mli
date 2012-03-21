@@ -100,6 +100,8 @@ module Buffer : sig
     (** convert string to buffer *)
 
   (* Big endian byte order *)
+  val get_be_int8 : t -> int -> int
+  val get_be_uint8 : t -> int -> int
   val get_be_int16 : t -> int -> int
   val get_be_uint16 : t -> int -> int
   val get_be_int31 : t -> int -> int
@@ -107,6 +109,8 @@ module Buffer : sig
   val get_be_int64 : t -> int -> int64
     (** Access with alignment and range checking *)
 
+  val unsafe_get_be_int8 : t -> int -> int
+  val unsafe_get_be_uint8 : t -> int -> int
   external unsafe_get_be_int16 : t -> int -> int = "caml_aio_buffer_get_be_int16" "noalloc"
   external unsafe_get_be_uint16 : t -> int -> int = "caml_aio_buffer_get_be_uint16" "noalloc"
   external unsafe_get_be_int31 : t -> int -> int = "caml_aio_buffer_get_be_int31" "noalloc"
@@ -114,6 +118,8 @@ module Buffer : sig
   external unsafe_get_be_int64 : t -> int -> int64 = "caml_aio_buffer_get_be_int64"
     (** Unsafe access without checks. *)
 
+  val set_be_int8 : t -> int -> int -> unit
+  val set_be_uint8 : t -> int -> int -> unit
   val set_be_int16 : t -> int -> int -> unit
   val set_be_uint16 : t -> int -> int -> unit
   val set_be_int31 : t -> int -> int -> unit
@@ -121,6 +127,8 @@ module Buffer : sig
   val set_be_int64 : t -> int -> int64 -> unit
     (** Access with alignment and range checking *)
 
+  val unsafe_set_be_int8 : t -> int -> int -> unit
+  val unsafe_set_be_uint8 : t -> int -> int -> unit
   external unsafe_set_be_int16 : t -> int -> int -> unit = "caml_aio_buffer_set_be_int16" "noalloc"
   external unsafe_set_be_uint16 : t -> int -> int -> unit = "caml_aio_buffer_set_be_uint16" "noalloc"
   external unsafe_set_be_int31 : t -> int -> int -> unit = "caml_aio_buffer_set_be_int31" "noalloc"
@@ -130,6 +138,8 @@ module Buffer : sig
 
 
   (* Little endian byte order *)
+  val get_le_int8 : t -> int -> int
+  val get_le_uint8 : t -> int -> int
   val get_le_int16 : t -> int -> int
   val get_le_uint16 : t -> int -> int
   val get_le_int31 : t -> int -> int
@@ -137,6 +147,8 @@ module Buffer : sig
   val get_le_int64 : t -> int -> int64
     (** Access with alignment and range checking *)
 
+  val unsafe_get_le_int8 : t -> int -> int
+  val unsafe_get_le_uint8 : t -> int -> int
   external unsafe_get_le_int16 : t -> int -> int = "caml_aio_buffer_get_le_int16" "noalloc"
   external unsafe_get_le_uint16 : t -> int -> int = "caml_aio_buffer_get_le_uint16" "noalloc"
   external unsafe_get_le_int31 : t -> int -> int = "caml_aio_buffer_get_le_int31" "noalloc"
@@ -144,6 +156,8 @@ module Buffer : sig
   external unsafe_get_le_int64 : t -> int -> int64 = "caml_aio_buffer_get_le_int64"
     (** Unsafe access without checks. *)
 
+  val set_le_int8 : t -> int -> int -> unit
+  val set_le_uint8 : t -> int -> int -> unit
   val set_le_int16 : t -> int -> int -> unit
   val set_le_uint16 : t -> int -> int -> unit
   val set_le_int31 : t -> int -> int -> unit
@@ -151,6 +165,8 @@ module Buffer : sig
   val set_le_int64 : t -> int -> int64 -> unit
     (** Access with alignment and range checking *)
 
+  val unsafe_set_le_int8 : t -> int -> int -> unit
+  val unsafe_set_le_uint8 : t -> int -> int -> unit
   external unsafe_set_le_int16 : t -> int -> int -> unit = "caml_aio_buffer_set_le_int16" "noalloc"
   external unsafe_set_le_uint16 : t -> int -> int -> unit = "caml_aio_buffer_set_le_uint16" "noalloc"
   external unsafe_set_le_int31 : t -> int -> int -> unit = "caml_aio_buffer_set_le_int31" "noalloc"
@@ -159,6 +175,8 @@ module Buffer : sig
     (** Unsafe access without checks. *)
 
 (* Network byte order *)
+  val get_net_int8 : t -> int -> int
+  val get_net_uint8 : t -> int -> int
   val get_net_int16 : t -> int -> int
   val get_net_uint16 : t -> int -> int
   val get_net_int31 : t -> int -> int
@@ -166,6 +184,8 @@ module Buffer : sig
   val get_net_int64 : t -> int -> int64
     (** Access with alignment and range checking *)
 
+  val unsafe_get_net_int8 : t -> int -> int
+  val unsafe_get_net_uint8 : t -> int -> int
   val unsafe_get_net_int16 : t -> int -> int
   val unsafe_get_net_uint16 : t -> int -> int
   val unsafe_get_net_int31 : t -> int -> int
@@ -173,6 +193,8 @@ module Buffer : sig
   val unsafe_get_net_int64 : t -> int -> int64
     (** Unsafe access without checks. *)
 
+  val set_net_int8 : t -> int -> int -> unit
+  val set_net_uint8 : t -> int -> int -> unit
   val set_net_int16 : t -> int -> int -> unit
   val set_net_uint16 : t -> int -> int -> unit
   val set_net_int31 : t -> int -> int -> unit
@@ -180,6 +202,8 @@ module Buffer : sig
   val set_net_int64 : t -> int -> int64 -> unit
     (** Access with alignment and range checking *)
 
+  val unsafe_set_net_int8 : t -> int -> int -> unit
+  val unsafe_set_net_uint8 : t -> int -> int -> unit
   val unsafe_set_net_int16 : t -> int -> int -> unit
   val unsafe_set_net_uint16 : t -> int -> int -> unit
   val unsafe_set_net_int31 : t -> int -> int -> unit

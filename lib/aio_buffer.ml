@@ -161,6 +161,10 @@ let set_str str =
 
 
 (* Big endian byte order *)
+let unsafe_get_be_int8 = unsafe_get_int8
+let unsafe_set_be_int8 = unsafe_set_int8
+let unsafe_get_be_uint8 = unsafe_get_uint8
+let unsafe_set_be_uint8 = unsafe_set_uint8  
 external unsafe_get_be_int16 : t -> int -> int = "caml_aio_buffer_get_be_int16" "noalloc"
 external unsafe_set_be_int16 : t -> int -> int -> unit = "caml_aio_buffer_set_be_int16" "noalloc"
 external unsafe_get_be_uint16 : t -> int -> int = "caml_aio_buffer_get_be_uint16" "noalloc"
@@ -171,6 +175,11 @@ external unsafe_get_be_int32 : t -> int -> int32 = "caml_aio_buffer_get_be_int32
 external unsafe_set_be_int32 : t -> int -> int32 -> unit = "caml_aio_buffer_set_be_int32" "noalloc"
 external unsafe_get_be_int64 : t -> int -> int64 = "caml_aio_buffer_get_be_int64"
 external unsafe_set_be_int64 : t -> int -> int64 -> unit = "caml_aio_buffer_set_be_int64" "noalloc"
+
+let get_be_int8 = get_int8
+let set_be_int8 = set_int8
+let get_be_uint8 = get_uint8
+let set_be_uint8 = set_uint8  
 
 let get_be_int16 buf off =
   check buf off 2;
@@ -214,6 +223,10 @@ let set_be_int64 buf off x =
 
 
 (* Little endian byte order *)
+let unsafe_get_le_int8 = unsafe_get_int8
+let unsafe_set_le_int8 = unsafe_set_int8
+let unsafe_get_le_uint8 = unsafe_get_uint8
+let unsafe_set_le_uint8 = unsafe_set_uint8  
 external unsafe_get_le_int16 : t -> int -> int = "caml_aio_buffer_get_le_int16" "noalloc"
 external unsafe_set_le_int16 : t -> int -> int -> unit = "caml_aio_buffer_set_le_int16" "noalloc"
 external unsafe_get_le_uint16 : t -> int -> int = "caml_aio_buffer_get_le_uint16" "noalloc"
@@ -224,6 +237,11 @@ external unsafe_get_le_int32 : t -> int -> int32 = "caml_aio_buffer_get_le_int32
 external unsafe_set_le_int32 : t -> int -> int32 -> unit = "caml_aio_buffer_set_le_int32" "noalloc"
 external unsafe_get_le_int64 : t -> int -> int64 = "caml_aio_buffer_get_le_int64"
 external unsafe_set_le_int64 : t -> int -> int64 -> unit = "caml_aio_buffer_set_le_int64" "noalloc"
+
+let get_le_int8 = get_int8
+let set_le_int8 = set_int8
+let get_le_uint8 = get_uint8
+let set_le_uint8 = set_uint8
 
 let get_le_int16 buf off =
   check buf off 2;
@@ -267,6 +285,10 @@ let set_le_int64 buf off x =
 
 
 (* Network byte order is big endian *)
+let unsafe_get_net_int8 = unsafe_get_int8
+let unsafe_set_net_int8 = unsafe_set_int8
+let unsafe_get_net_uint8 = unsafe_get_uint8
+let unsafe_set_net_uint8 = unsafe_set_uint8  
 let unsafe_get_net_int16 = unsafe_get_be_int16
 let unsafe_set_net_int16 = unsafe_set_be_int16
 let unsafe_get_net_uint16 = unsafe_get_be_uint16
@@ -277,6 +299,10 @@ let unsafe_get_net_int32 = unsafe_get_be_int32
 let unsafe_set_net_int32 = unsafe_set_be_int32
 let unsafe_get_net_int64 = unsafe_get_be_int64
 let unsafe_set_net_int64 = unsafe_set_be_int64
+let get_net_int8 = get_int8
+let set_net_int8 = set_int8
+let get_net_uint8 = get_uint8
+let set_net_uint8 = set_uint8  
 let get_net_int16 = get_be_int16
 let set_net_int16 = set_be_int16
 let get_net_uint16 = get_be_uint16
