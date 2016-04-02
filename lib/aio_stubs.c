@@ -97,7 +97,8 @@ CAMLprim value caml_aio_context(value ml_max_ios) {
     context->iocbs[i]->data = (void*)(2 * i + 1);
   }
 
-  io_queue_init(max_ios, &context->ctx);
+  // FIXME: throw exception
+  assert(io_queue_init(max_ios, &context->ctx) == 0);
   context->max_ios = max_ios;
   context->pending = 0;
   context->fd = eventfd(0, EFD_NONBLOCK | EFD_CLOEXEC);
