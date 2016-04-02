@@ -23,6 +23,7 @@
 #include <stdint.h>
 #include <unistd.h>
 #include <inttypes.h>
+#include <errno.h>
 #include <arpa/inet.h>
 #include <libaio.h>
 #include <sys/eventfd.h>
@@ -289,9 +290,15 @@ CAMLprim value caml_aio_process(value ml_ctx) {
   Context *ctx = (Context*)Data_custom_val(Field(ml_ctx, 0));
   uint64_t num;
 
+  int ret = read(ctx->fd, &num, sizeof(num));
+  if (ret == 0 || (ret == -1 &&
+                   (errno == EWOULDBLOCK ||
+                    errno == EAGAIN))
+      || num == 0)
+    CAMLreturn(Val_unit);
+
   // FIXME: throw exception
-  assert(read(ctx->fd, &num, sizeof(num)) == sizeof(num));
-  if (num == 0) CAMLreturn(Val_unit);
+  assert(ret == sizeof(num));
 
   struct io_event events[num];
   struct io_event *ep;
