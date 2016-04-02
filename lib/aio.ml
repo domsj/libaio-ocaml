@@ -26,15 +26,12 @@ type result =
   | Partial of Buffer.t * int
 
 let call_result cont buffer =
-  Printf.printf "### call_result\n";
   cont (Result buffer)
 
 let call_error cont err =
-  Printf.printf "### call_error\n";
   cont (Errno err)
 
 let call_partial cont buffer len =
-  Printf.printf "### call_partial\n";
   cont (Partial (buffer, len))
 
 let _ = Callback.register "caml_aio_call_result" call_result
