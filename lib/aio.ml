@@ -55,7 +55,9 @@ external write : context -> Unix.file_descr -> int64 -> Buffer.t -> (result -> u
 external poll : context -> Unix.file_descr -> int -> (Unix.file_descr -> unit) -> unit = "caml_aio_poll"
 external run : context -> unit = "caml_aio_run"
 external process : context -> unit = "caml_aio_process"
+
 external fd : context -> Unix.file_descr = "caml_aio_fd"
+external get_pending : context -> int = "caml_aio_get_pending"
 
 external sync_read : Unix.file_descr -> int64 -> Buffer.t -> unit = "caml_aio_sync_read"
 external sync_write : Unix.file_descr -> int64 -> Buffer.t -> unit = "caml_aio_sync_write"

@@ -361,6 +361,16 @@ CAMLprim value caml_aio_fd(value ml_ctx) {
   CAMLreturn(Val_int(ctx->fd));
 }
 
+/* get_pending: fun ctx -> int
+external get_pending : context -> int = "caml_aio_get_pending"
+ */
+CAMLprim value caml_aio_get_pending(value ml_ctx) {
+  CAMLparam1(ml_ctx);
+  Context *ctx = (Context*)Data_custom_val(Field(ml_ctx, 0));
+  CAMLreturn(Val_int(ctx->pending));
+}
+
+
 /* sync_read: fun fd fd_off buf -> unit
 external sync_read : Unix.file_descr -> int64 -> buffer -> unit = "caml_aio_sync_read"
 */

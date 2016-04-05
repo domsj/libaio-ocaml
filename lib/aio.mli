@@ -252,6 +252,9 @@ val process : context -> unit
 val fd : context -> Unix.file_descr
   (** return eventfd associated with the context *)
 
+val get_pending : context -> int
+  (** return the number of pending requests *)
+
 val sync_read : Unix.file_descr -> int64 -> Buffer.t -> unit
   (** fill buffer from file at given offset, blocking *)
 
