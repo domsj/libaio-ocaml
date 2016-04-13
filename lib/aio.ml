@@ -49,9 +49,17 @@ let result = function
 
 
 type context
+
 external context: int -> context = "caml_aio_context"
+
 external read : context -> Unix.file_descr -> int64 -> Buffer.t -> (result -> unit) -> unit = "caml_aio_read"
+external read_multiple : context ->
+                         (Unix.file_descr * int64 * Buffer.t * (result -> unit)) array ->
+                         unit =
+  "caml_aio_read_multiple"
+
 external write : context -> Unix.file_descr -> int64 -> Buffer.t -> (result -> unit) -> unit = "caml_aio_write"
+
 external poll : context -> Unix.file_descr -> int -> (Unix.file_descr -> unit) -> unit = "caml_aio_poll"
 external run : context -> unit = "caml_aio_run"
 external process : context -> unit = "caml_aio_process"

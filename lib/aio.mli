@@ -237,6 +237,11 @@ val context : int -> context
 val read : context -> Unix.file_descr -> int64 -> Buffer.t -> (result -> unit) -> unit
   (** fill buffer from file at given offset and call continuation *)
 
+val read_multiple : context ->
+                    (Unix.file_descr * int64 * Buffer.t * (result -> unit)) array ->
+                    unit
+ (** fill buffers from files at given offsets and call continuations *)
+
 val write : context -> Unix.file_descr -> int64 -> Buffer.t -> (result -> unit) -> unit
   (** write buffer to file at given offset and call continuation *)
 

@@ -143,6 +143,44 @@ CAMLprim value caml_aio_read(value ml_ctx, value ml_fd, value ml_fd_off, value m
   CAMLreturn(Val_unit);
 }
 
+CAMLprim value caml_aio_read_multiple(value ml_ctx, value read_cmds) {
+  CAMLparam2(ml_ctx, read_cmds);
+  Context *ctx = (Context*)Data_custom_val(Field(ml_ctx, 0));
+
+  int len = Wosize_val(read_cmds);
+  int i;
+  struct iocb **iocbs_first = &ctx->iocbs[ctx->pending];
+  for (i = 0; i < len; i++) {
+    CAMLlocal3(read_cmd, ml_buffer, ml_fn);
+    read_cmd = Field(read_cmds, i);
+
+    int fd = Int_val(Field(read_cmd, 0));
+    uint64_t fd_off = Int64_val(Field(read_cmd, 1));
+
+    ml_buffer = Field(read_cmd, 2);
+    void *buf = Data_bigarray_val(ml_buffer);
+    size_t len = Bigarray_val(ml_buffer)->dim[0];
+
+    struct iocb **iocbs = &ctx->iocbs[ctx->pending];
+    struct iocb *iocb = iocbs[0];
+    intptr_t slot = (intptr_t)iocb->data;
+
+    memset(iocb, 0, sizeof(struct iocb));
+    io_prep_pread(iocb, fd, buf, len, fd_off);
+    io_set_eventfd(iocb, ctx->fd);
+
+    iocb->data = (void*)slot;
+    ml_fn = Field(read_cmd, 3);
+    Store_field(ml_ctx, slot, ml_fn);
+    Store_field(ml_ctx, slot + 1, ml_buffer);
+    ++ctx->pending;
+  }
+
+  assert(io_submit(ctx->ctx, len, iocbs_first));
+
+  CAMLreturn(Val_unit);
+}
+
 /* write: fun ctx fd fd_off buf fn -> ()
 external write : context -> Unix.file_descr -> int64 -> buffer ->
                  (result -> unit) -> unit = "caml_aio_write"
